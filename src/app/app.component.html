@@ -1,0 +1,50 @@
+<div class="app-wrapper">
+  <div class="app-shell">
+
+    <!-- barra de lado -->
+    <app-sidebar
+      [activeRoute]="activeNavRoute"
+      [loggedIn]="loggedIn()"
+      (routeChange)="navigate($event)">
+    </app-sidebar>
+
+    <!-- Main -->
+    <main class="main">
+
+      @if (currentScreen() === 'alarmas') {
+        <app-alarm-list (createAlarm)="navigate('crear')"></app-alarm-list>
+      }
+
+      @if (currentScreen() === 'crear') {
+        <app-alarm-create (back)="navigate('alarmas')"></app-alarm-create>
+      }
+
+      @if (currentScreen() === 'acceder') {
+        <app-auth
+          (back)="navigate('alarmas')"
+          (loginSuccess)="onLoginSuccess()">
+        </app-auth>
+      }
+
+      @if (currentScreen() === 'config') {
+        <app-settings
+          (back)="navigate('alarmas')"
+          (viewDevices)="navigate('dispositivos')"
+          (recordPhrase)="onRecordPhrase()">
+        </app-settings>
+      }
+
+      @if (currentScreen() === 'dispositivos') {
+        <app-devices (back)="navigate('config')"></app-devices>
+      }
+
+      @if (currentScreen() === 'grabadora') {
+        <app-voice-recorder
+          (back)="navigate('config')"
+          (accepted)="navigate('config')">
+        </app-voice-recorder>
+      }
+
+    </main>
+  </div>
+</div>

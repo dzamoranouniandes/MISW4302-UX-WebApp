@@ -1,0 +1,54 @@
+.app-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-shell {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-left: 1px solid var(--gray-200);
+}
+
+/* ── Authorizacion ── */
+.auth-center { display:flex;flex-direction:column;align-items:center;padding-top:24px; }
+.google-box { width:150px;height:150px;border:1.5px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:26px; }
+.auth-form { width:320px;display:flex;flex-direction:column;gap:14px; }
+.form-group { display:flex;flex-direction:column;gap:5px; }
+.form-label { font-size:13px;font-weight:600;color:var(--gray-700); }
+.auth-actions { display:flex;justify-content:center;gap:10px;margin-top:6px; }
+
+/* ── Configuracion ── */
+.section-h { font-size:16px;font-weight:700;color:var(--gray-800);margin-bottom:26px; }
+.cfg-sec-head { display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--gray-700);margin-bottom:12px; }
+.cfg-check-row { display:flex;align-items:center;gap:9px;font-size:13px;color:var(--gray-700);padding-bottom:12px;border-bottom:1px solid var(--gray-200);margin-bottom:14px; }
+.cfg-btns { display:flex;gap:10px; }
+.chk { width:15px;height:15px;border:2px solid var(--purple);border-radius:3px;background:var(--purple);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer; }
+.chk.off { background:transparent; }
+
+/* ── Dispositivos ── */
+.dev-title { font-size:16px;font-weight:700;color:var(--gray-800);margin-bottom:22px; }
+.dev-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.dev-card { border:1.5px solid var(--gray-200);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .15s; }
+.dev-card:hover { border-color:var(--purple);box-shadow:0 3px 10px rgba(123,47,190,.08); }
+.dev-name { font-size:13.5px;font-weight:600;color:var(--gray-800); }
+.dev-date { font-size:11.5px;color:var(--gray-400);margin-top:2px; }
+
+/* ── grabadora ── */
+.rec-title { font-size:16px;font-weight:700;color:var(--gray-800);margin-bottom:24px; }
+.rec-center { display:flex;flex-direction:column;align-items:center; }
+.rec-box { width:180px;height:150px;border:1.5px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px; }
+.waveform { display:flex;align-items:center;gap:4px;height:72px; }
+.wbar { width:6px;border-radius:4px;background:var(--gray-300);animation:wv 1.2s ease-in-out infinite; }
+@keyframes wv { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(.35)} }
+.rec-btns { display:flex;gap:10px; }
+.rec-avatar { position:absolute;bottom:18px;right:18px;width:38px;height:38px;border-radius:50%;background:#7B5EA7;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center; }

@@ -1,0 +1,106 @@
+<!-- alarm-create.component.html -->
+
+<!--  Escoger tiempo -->
+@if (showTimePicker) {
+  <div class="overlay" (click)="closeTimePicker()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <h3>Seleccionar Hora</h3>
+      <div class="time-inputs">
+        <div class="time-col">
+          <span class="time-label">HH</span>
+          <input class="time-spinner" type="number" [(ngModel)]="tpHour" min="1" max="12">
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-col">
+          <span class="time-label">MM</span>
+          <input class="time-spinner" type="number" [(ngModel)]="tpMin" min="0" max="59">
+        </div>
+        <div class="ampm">
+          <button class="ampm-btn" [class.selected]="tpAmPm === 'AM'" (click)="tpAmPm = 'AM'">AM</button>
+          <button class="ampm-btn" [class.selected]="tpAmPm === 'PM'" (click)="tpAmPm = 'PM'">PM</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-dark" (click)="closeTimePicker()">Cancelar</button>
+        <button class="btn btn-primary" (click)="confirmTime()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+}
+
+<div class="topbar">
+  <div class="topbar-breadcrumb">
+    <span class="link" (click)="back.emit()">Alarmas</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <span>Nueva Alarma</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="btn btn-dark" (click)="back.emit()">Volver</button>
+    <button class="btn btn-primary" (click)="saveAlarm()">Guardar</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="crear-grid">
+
+    <!-- columna izquierda -->
+    <div class="crear-left">
+      <div>
+        <div class="field-label">Etiqueta de Alarma:</div>
+        <input class="form-input" type="text" placeholder="Despertar" [(ngModel)]="label">
+      </div>
+
+      <div>
+        <div class="field-label">Frecuencia:</div>
+        <div class="freq-tabs">
+          <button class="freq-tab" [class.active]="freq === 'semanal'" (click)="freq = 'semanal'">Semanal</button>
+          <button class="freq-tab" [class.active]="freq === 'mensual'" (click)="freq = 'mensual'">Mensual</button>
+        </div>
+        <div class="day-chips" style="margin-top:14px">
+          @for (day of days; track $index) {
+            <div class="day-chip" [class.inactive]="!day.active" (click)="toggleDay(day)">{{ day.key }}</div>
+          }
+        </div>
+      </div>
+
+      <div class="checkboxes">
+        <div class="checkbox-row">
+          <div class="custom-checkbox" [class.unchecked]="!notifyOnDisable" (click)="notifyOnDisable = !notifyOnDisable">
+            @if (notifyOnDisable) {
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            }
+          </div>
+          <span>¿Notificar si se desactiva la alarma?</span>
+        </div>
+        <div class="checkbox-row">
+          <div class="custom-checkbox" [class.unchecked]="!voiceControl" (click)="voiceControl = !voiceControl">
+            @if (voiceControl) {
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            }
+          </div>
+          <span>¿Habilitar control por voz para la alarma?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- columna derecha -->
+    <div class="crear-right">
+      <div class="time-display" (click)="openTimePicker()">{{ time }}</div>
+      <div class="media-cards">
+        <div class="media-card">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          Fondo
+        </div>
+        <div class="media-card">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+          Sonido
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

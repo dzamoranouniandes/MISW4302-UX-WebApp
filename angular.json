@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "wakeup-angular": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+  "builder": "@angular-devkit/build-angular:browser",
+  "options": {
+    "outputPath": "dist/wakeup-angular",
+    "index": "src/index.html",
+    "main": "src/main.ts",
+    "polyfills": ["zone.js"],
+    "tsConfig": "tsconfig.app.json",
+    "styles": ["src/styles.css"],
+    "scripts": []
+  },
+  "configurations": {
+    "production": {
+      "outputHashing": "all"
+    },
+    "development": {
+      "buildOptimizer": false,
+      "optimization": false,
+      "vendorChunk": true,
+      "extractLicenses": false,
+      "sourceMap": true,
+      "namedChunks": true
+    }
+  },
+  "defaultConfiguration": "production"
+},
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "development": { "buildTarget": "wakeup-angular:build:development" }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "5c81e4e7-5352-44a8-9e78-ef0e3dd65bde"
+  }
+}
